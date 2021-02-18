@@ -28,7 +28,8 @@ const Index = () => (
     <ProfileLink profile="Peter" />
     <ProfileLink profile="Yumi" />
 
-    <Card style={{ width: '18rem' }}>
+    {[...Array(10).keys()].map(v => (
+      <Card style={{ width: '18rem' }}>
       <Card.Img variant="top" src="//via.placeholder.com/100x100" />
       <Card.Body>
         <Card.Title>Card Title</Card.Title>
@@ -39,18 +40,9 @@ const Index = () => (
         <Button variant="primary">Go somewhere</Button>
       </Card.Body>
     </Card>
+    ))}
+    
   </Layout>
 );
-
-Index.getInitialProps = async function() {
-  const res = await fetch("");
-  const data = await res.json();
-
-  console.log(data);
-
-  return {
-    profiles: data.map(profile => profile.name)
-  };
-}
 
 export default Index;

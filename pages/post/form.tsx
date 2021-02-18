@@ -1,50 +1,16 @@
-import dynamic from 'next/dynamic';
-import * as React from 'react';
-import { Editor as EditorType, EditorProps } from '@toast-ui/react-editor';
-import { TuiEditorWithForwardedProps } from '../../components/TuiEditorWrapper';
+import Editor from '../../components/Editor';
+import Layout from '../../components/Layout';
+import { Form, Button } from 'react-bootstrap';
 
-interface EditorPropsWithHandlers extends EditorProps {
-  onChange?(value: string): void;
-};
+const form = () => (
+  <Layout>
+     <Form.Control size="lg" type="text" placeholder="제목" />
+    <Editor onChange={() => {}} valueType="markdown" />
+    <div style={{ display: 'flex' }}>
+      <Button variant="light" style={{ marginLeft: 'auto' }}>목록</Button>
+      <Button type="submit">저장</Button>
+    </div>
+  </Layout>
+)
 
-const Editor = dynamic<TuiEditorWithForwardedProps>(() => import("../../components/TuiEditorWrapper"), { ssr: false });
-const EditorWithForwardedRef = React.forwardRef<EditorType | undefined, EditorPropsWithHandlers>((props, ref) => (
-  <Editor {...props} forwardedRef={ref as React.MutableRefObject<EditorType>} />
-));
-
-interface Props extends EditorProps {
-  onChange(value: string): void;
-
-  valueType?: "markdown" | "html";
-}
-
-const Form: React.FC<Props> = (props: Props) => {
-  const { initialValue, previewStyle, height, initialEditType, useCommandShortcut } = props;
-
-  const editorRef = React.useRef<EditorType>();
-  const handleChange = React.useCallback(() => {
-    if (!editorRef.current) {
-      return;
-    }
-
-    const instance = editorRef.current.getInstance();
-    const valueType = props.valueType || "markdown";
-
-    // props.onChange(valueType === "markdown" ? instance.getMarkdown() : instance.getHtml());
-  }, [props, editorRef]);
-
-  return <div>
-    <EditorWithForwardedRef
-      {...props}
-      initialValue={initialValue || "hello react editor world!"}
-      previewStyle={previewStyle || "vertical"}
-      height={height || "600px"}
-      initialEditType={initialEditType || "markdown"}
-      useCommandShortcut={useCommandShortcut || true}
-      ref={editorRef}
-      onChange={handleChange}
-    />
-  </div>;
-}
-
-export default Form;
+export default form;
