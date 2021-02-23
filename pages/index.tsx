@@ -1,9 +1,12 @@
 import Head from 'next/head'
-import Link from 'next/Link'
+import Link from 'next/link'
 import styles from '../styles/Home.module.css'
-import { Card, Button } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
+import { Post } from '../instance';
+import BlogPost from '../components/BlogPost';
+import Header from '../components/base/Header'; 
 
-const posts = [...Array(10).keys()].map((v) => ({
+const posts: Post[] = [...Array(10).keys()].map((v) => ({
   id: v + 1,
   title: `title${v}`,
   content: `content${v}content${v}content${v}content${v}content${v}`
@@ -12,30 +15,31 @@ const posts = [...Array(10).keys()].map((v) => ({
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <main className={styles.main}>
-        <Card style={{ width: '18rem' }}>
-          <Card.Img variant="top" src="//via.placeholder.com/100x100" />
-          <Card.Body>
-            <Card.Title>Card Title</Card.Title>
-            <Card.Text>
-              Some quick example text to build on the card title and make up the bulk of
-              the card's content.
-            </Card.Text>
-            <Button variant="primary">Go somewhere</Button>
-          </Card.Body>
-        </Card>
+      <Header></Header>
+      <main>
+        <div>
+          <Button variant="danger" onClick={() => {location.href="/post/form"}}>글쓰기</Button>
+        </div>
+        <div className={styles.main}>
+          {
+            posts.map((post, index) => (
+              <a href="/post/detail" key={index}>
+                <BlogPost post={post}></BlogPost>
+              </a>
+            ))
+          }
+        </div>
       </main>
 
       <footer className={styles.footer}>
         <img src="/images/git_logo.png" alt="Git Logo" className={styles.logo} />
         <Link href="//github.com/jiyaaany">
-          <a>
+          <a target="_blank">
             github.com
           </a>
         </Link>
