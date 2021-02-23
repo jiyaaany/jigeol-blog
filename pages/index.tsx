@@ -1,10 +1,8 @@
-import Head from 'next/head'
 import Link from 'next/link'
-import styles from '../styles/Home.module.css'
-import { Button } from 'react-bootstrap';
-import { Post } from '../instance';
+import {Post} from '../instance';
 import BlogPost from '../components/BlogPost';
-import Header from '../components/base/Header'; 
+import Layout from '../components/Layout';
+import { Button } from 'react-bootstrap';
 
 const posts: Post[] = [...Array(10).keys()].map((v) => ({
   id: v + 1,
@@ -12,38 +10,39 @@ const posts: Post[] = [...Array(10).keys()].map((v) => ({
   content: `content${v}content${v}content${v}content${v}content${v}`
 }));
 
+type ProfileProps = {
+  profile: string;
+};
 
-export default function Home() {
-  return (
+const ProfileLink = (props: ProfileProps) => (
+  <div>
+    <Link href={`/p/[profile]`} as={`/p/${props.profile}`}>
+      <a>Go to {props.profile}'s profile</a>
+    </Link>
+  </div>
+);
+
+const Home = () => (
+  <Layout>
     <div>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Header></Header>
-      <main>
-        <div>
-          <Button variant="danger" onClick={() => {location.href="/post/form"}}>글쓰기</Button>
-        </div>
-        <div className={styles.main}>
-          {
-            posts.map((post, index) => (
-              <a href="/post/detail" key={index}>
-                <BlogPost post={post}></BlogPost>
-              </a>
-            ))
-          }
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <img src="/images/git_logo.png" alt="Git Logo" className={styles.logo} />
-        <Link href="//github.com/jiyaaany">
-          <a target="_blank">
-            github.com
-          </a>
-        </Link>
-      </footer>
+      <Button variant="danger" onClick={() => {
+        location.href = "/post/form"
+      }}>글쓰기</Button>
     </div>
-  )
-}
+    <h1>Friends List</h1>
+    <ProfileLink profile="Jake"/>
+    <ProfileLink profile="Peter"/>
+    <ProfileLink profile="Yumi"/>
+
+    {
+      posts.map((post, index) => (
+        <Link href={'/post/detail'} key={index}>
+          <BlogPost post={post}/>
+        </Link>
+      ))
+    }
+
+  </Layout>
+);
+
+export default Home;
