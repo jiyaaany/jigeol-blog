@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import Layout from '../components/Layout';
 import { Card, Button } from 'react-bootstrap';
 
 const posts = [...Array(10).keys()].map((v) => ({
@@ -22,14 +21,13 @@ const ProfileLink = (props: ProfileProps) => (
 );
 
 const Index = () => (
-  <Layout>
+  <>
     <h1>Friends List</h1>
     <ProfileLink profile="Jake" />
     <ProfileLink profile="Peter" />
     <ProfileLink profile="Yumi" />
 
-    {[...Array(10).keys()].map(v => (
-      <Card style={{ width: '18rem' }}>
+    <Card style={{ width: '18rem' }}>
       <Card.Img variant="top" src="//via.placeholder.com/100x100" />
       <Card.Body>
         <Card.Title>Card Title</Card.Title>
@@ -40,9 +38,7 @@ const Index = () => (
         <Button variant="primary">Go somewhere</Button>
       </Card.Body>
     </Card>
-    ))}
-    
-  </Layout>
+  </>
 );
 
 export default Index;
