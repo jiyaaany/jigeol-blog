@@ -1,8 +1,8 @@
 import Link from 'next/link'
+import { Card, Button } from 'react-bootstrap';
 import {Post} from '../instance';
 import BlogPost from '../components/BlogPost';
 import Layout from '../components/Layout';
-import { Button } from 'react-bootstrap';
 
 const posts: Post[] = [...Array(10).keys()].map((v) => ({
   id: v + 1,
@@ -41,7 +41,17 @@ const Home = () => (
         </Link>
       ))
     }
-
+    <Card style={{ width: '18rem' }}>
+      <Card.Img variant="top" src="//via.placeholder.com/100x100" />
+      <Card.Body>
+        <Card.Title>Card Title</Card.Title>
+        <Card.Text>
+          Some quick example text to build on the card title and make up the bulk of
+          the card's content.
+        </Card.Text>
+        <Button variant="primary">Go somewhere</Button>
+      </Card.Body>
+    </Card>
   </Layout>
 );
 
