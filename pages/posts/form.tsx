@@ -1,6 +1,6 @@
 import Editor from '../../components/Editor';
-import Layout from '../../components/Layout';
 import { Form, Button } from 'react-bootstrap';
+import Layout from '../../components/Layout';
 
 const form = () => (
   <Layout>

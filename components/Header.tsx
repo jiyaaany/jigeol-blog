@@ -12,7 +12,7 @@ const Header = () => (
       <Navbar.Brand href="/">지걸Blog</Navbar.Brand>
       <Nav className="mr-auto">
         <Nav.Link href="#features">Features</Nav.Link>
-        <Nav.Link href="/post/form">글쓰기</Nav.Link>
+        <Nav.Link href="/posts/form">글쓰기</Nav.Link>
       </Nav>
       <Form inline>
         <FormControl type="text" placeholder="Search" className="mr-sm-2" />

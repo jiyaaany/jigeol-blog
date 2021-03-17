@@ -1,8 +1,8 @@
 import Link from 'next/link'
+import { Card, Button } from 'react-bootstrap';
 import {Post} from '../instance';
 import BlogPost from '../components/BlogPost';
 import Layout from '../components/Layout';
-import { Button } from 'react-bootstrap';
 import axios from '../plugins/axios';
 import { useEffect, useState } from 'react';
 
