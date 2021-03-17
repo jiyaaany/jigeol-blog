@@ -4,7 +4,7 @@ import { Form, Button } from 'react-bootstrap';
 
 const form = () => (
   <Layout>
-     <Form.Control size="lg" type="text" placeholder="제목" />
+    <Form.Control size="lg" type="text" placeholder="제목" />
     <Editor onChange={() => {}} valueType="markdown" />
     <div style={{ display: 'flex' }}>
       <Button variant="light" style={{ marginLeft: 'auto' }}>목록</Button>
