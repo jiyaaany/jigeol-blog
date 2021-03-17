@@ -1,8 +1,14 @@
 import Link from 'next/link'
+import Router from 'next/router';
 import { Card, Button } from 'react-bootstrap';
 import {Post} from '../instance';
 import BlogPost from '../components/BlogPost';
 import Layout from '../components/Layout';
+
+// Router.push({
+//   pathname: '/post/detail',
+//   query: { post_idx: '' }
+// })
 
 const posts: Post[] = [...Array(10).keys()].map((v) => ({
   id: v + 1,
@@ -36,9 +42,7 @@ const Home = () => (
 
     {
       posts.map((post, index) => (
-        <Link href={'/post/detail'} key={index}>
-          <BlogPost post={post}/>
-        </Link>
+        <BlogPost post={post} key={index} />
       ))
     }
     <Card style={{ width: '18rem' }}>
