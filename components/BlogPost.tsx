@@ -8,7 +8,7 @@ type P = {
 
 export default function BlogPost({ post }: P) {
     return (
-        <Link href={{ pathname: '/post/detail', query: { post_idx: post.id } }}>
+        <Link href={`/post/detail/[post_idx]`} as={`/post/detail/${post.post_idx}`}>
             <Card style={{ width: '18rem' }} className="m-2">
                 <Card.Img variant="top" src="//via.placeholder.com/100x100" />
                 <Card.Body>

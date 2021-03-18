@@ -49,7 +49,7 @@ const Home = () => {
   }, [posts]);
 
   return (
-    <Layout>
+    <>
       <div>
         <Button variant="danger" onClick={() => {
           location.href = "/post/form"
@@ -76,7 +76,7 @@ const Home = () => {
           <Button variant="primary">Go somewhere</Button>
         </Card.Body>
       </Card>
-    </Layout>
+    </>
   )
 }
 export default Home;
