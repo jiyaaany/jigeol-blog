@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Router from 'next/router';
 import { Card, Button } from 'react-bootstrap';
 import {Post} from '../instance';
-import BlogPost from '../components/BlogPost';
+import PostCard from '../components/PostCard';
 import Layout from '../components/Layout';
 import axios from '../plugins/axios';
 import { useEffect, useState } from 'react';
@@ -34,17 +34,17 @@ const Home = () => {
   const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
-    console.log('component did mount');
+    // console.log('component did mount');
 
     axios.post('/posts').then(({data}) => {
       setPosts(data);
     });
 
-    return () => console.log('component will unmount');
+    // return () => console.log('component will unmount');
   }, []);
 
   useEffect(() => {
-    console.log('component did update');
+    // console.log('component did update');
     console.log(posts);
   }, [posts]);
 
@@ -62,7 +62,7 @@ const Home = () => {
 
       {
         posts.map((post, index) => (
-          <BlogPost post={post} key={index}/>
+          <PostCard post={post} key={index}/>
         ))
       }
       <Card style={{width: '18rem'}}>

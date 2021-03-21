@@ -1,29 +1,35 @@
 import { Form, Button } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 import axios from '../plugins/axios';
+import { Post, Comment } from '../instance';
 
-const CommentForm = () => {
-  const [comment, setComment] = useState<string>('');
+type CommentFormProps = {
+  post: Post,
+  addComment: (comment: string) => void
+}
+
+const CommentForm = ({ post, addComment }: CommentFormProps) => {
+  const [content, setContent] = useState<string>('');
 
   useEffect(() => {
-    console.log(comment);
-  }, [comment]);
+    axios.post('/comments')
+  }, [content]);
 
   const submitForm = (e) => {
     e.preventDefault();
 
-    axios.post('/comment',{comment})
+    axios.post('/comments', {content, user_idx: 1, post_idx: post.post_idx})
       .then((response) => {
         if (response.status) {
-          //modal
-          setComment('');
+          addComment(content);
+          setContent('');
         }
     });
   }
 
   return (
     <div style={{display: 'flex'}}>
-      <Form.Control type="text" value={comment} placeholder="댓글을 입력하세요." onChange={(e) => setComment(e.target.value)} />
+      <Form.Control type="text" value={content} placeholder="댓글을 입력하세요." onChange={(e) => setContent(e.target.value)} />
 
       <Button variant="primary" style={{width: 100}} onClick={submitForm}>
         저장

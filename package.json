@@ -16,6 +16,7 @@
     "bootstrap": "^4.6.0",
     "codemirror": "^5.59.2",
     "isomorphic-unfetch": "^3.1.0",
+    "moment": "2.29.1",
     "next": "10.0.6",
     "next-images": "1.7.0",
     "react": "17.0.1",

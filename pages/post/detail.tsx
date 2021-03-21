@@ -32,10 +32,10 @@ const detail = () => {
         </Card.Body>
         <Card.Footer className="text-muted">2 days ago</Card.Footer>
       </Card>
-      <CommentForm/>
+      <CommentForm post={post} />
       {
-        comments.map((comment) => (
-          <CommentCard />
+        comments.map((comment, index) => (
+          <CommentCard comment={comment} key={index} />
         ))
       }
       <div className="d-flex justify-content-end mt-1">
