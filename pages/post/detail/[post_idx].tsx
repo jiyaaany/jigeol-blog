@@ -6,7 +6,15 @@ import CommentForm from '../../../components/CommentForm';
 import CommentCard from '../../../components/CommentCard';
 import axios from '../../../plugins/axios';
 import moment from 'moment';
-import {sendEtagResponse} from "next/dist/next-server/server/send-payload";
+
+export const getServerSideProps = async ({params}) => {
+  const post_idx = params.post_idx;
+
+  return {
+    props: { post_idx }
+  }
+}
+
 
 const Detail = () => {
   const router = useRouter();
@@ -15,17 +23,19 @@ const Detail = () => {
   const [post, setPost] = useState<Post>();
 
   const addComment = (comment: string) => {
-    setComments(comments.concat(comment));
   };
 
   useEffect(() => {
+    console.log(123);
+
+    console.log(router.query);
     if (router.query.post_idx) {
       axios.get(`/posts/${router.query.post_idx}`).then(({ data }: { data: Post }) => {
         setPost(data);
+      });
 
-        axios.get(`/comments/${router.query.post_idx}`).then(({ data }: { data: Comment[] }) => {
-          setComments(data);
-        })
+      axios.get(`/comments/${router.query.post_idx}`).then(({ data }: { data: Comment[] }) => {
+        setComments(data);
       });
     }
   }, []);
@@ -47,7 +57,6 @@ const Detail = () => {
           <Card.Text>
             {post.content}
           </Card.Text>
-          <Button variant="primary">Go somewhere</Button>
         </Card.Body>
         <Card.Footer className="text-muted">{moment(post.reg_date).format('YYYY-MM-DD')}</Card.Footer>
       </Card> }

@@ -13,14 +13,15 @@ export default function PostCard({ post }: P) {
                 <Card.Img variant="top" src="//via.placeholder.com/100x100" />
                 <Card.Body>
                 <Card.Title>{post.title}</Card.Title>
-                <Card.Text style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <Card.Text>
                         {post.content}
-                    </div>
+                    </Card.Text>
+
                     <div>
                         <Button variant="outline-primary">1</Button>
                     </div>
-                </Card.Text>
+                </div>
                 </Card.Body>
             </Card>
         </Link>

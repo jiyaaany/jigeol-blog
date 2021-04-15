@@ -6,6 +6,7 @@ import PostCard from '../components/PostCard';
 import Layout from '../components/Layout';
 import axios from '../plugins/axios';
 import { useEffect, useState } from 'react';
+import { classes } from '../js/common';
 
 // Router.push({
 //   pathname: '/post/detail',
@@ -24,7 +25,7 @@ type ProfileProps = {
 
 const ProfileLink = (props: ProfileProps) => (
   <div>
-    <Link href={`/p/[profile]`} as={`/p/${props.profile}`}>
+    <Link href={`/p/[profile]`} as={`/p/${props.profile}`} classes={'mt-10'}>
       <a>Go to {props.profile}'s profile</a>
     </Link>
   </div>
@@ -45,7 +46,6 @@ const Home = () => {
 
   useEffect(() => {
     // console.log('component did update');
-    console.log(posts);
   }, [posts]);
 
   return (

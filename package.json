@@ -8,6 +8,9 @@
     "start": "next start"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "1.2.35",
+    "@fortawesome/free-solid-svg-icons": "5.15.3",
+    "@fortawesome/react-fontawesome": "0.1.14",
     "@toast-ui/react-editor": "^2.5.1",
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-less": "^1.0.1",
