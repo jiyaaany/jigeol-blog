@@ -18,5 +18,5 @@ export interface Comment {
     comment_idx: number,
     content: string,
     user: User,
-    reg_date: Date,
+    reg_date: string,
 }

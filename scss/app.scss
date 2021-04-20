@@ -1,0 +1,14 @@
+@function margin($figure) {
+  @return $figure * 0.063;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-50w {
+  width: 50%;
+  max-width: none!important;
+}

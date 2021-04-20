@@ -5,7 +5,7 @@ import { Post, Comment } from '../instance';
 
 type CommentFormProps = {
   post: Post,
-  addComment: (comment: string) => void
+  addComment: (comment: Comment) => void
 }
 
 const CommentForm = ({ post, addComment }: CommentFormProps) => {
@@ -18,10 +18,10 @@ const CommentForm = ({ post, addComment }: CommentFormProps) => {
   const submitForm = (e) => {
     e.preventDefault();
 
-    axios.post('/comments', {content, user_idx: 1, post_idx: post.post_idx})
+    axios.post('/comments', {content, user_idx: 1, post_idx: post.post_idx, action: 'add'})
       .then((response) => {
         if (response.status) {
-          addComment(content);
+          addComment(response.data);
           setContent('');
         }
     });

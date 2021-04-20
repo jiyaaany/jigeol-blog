@@ -22,30 +22,30 @@ const Detail = () => {
   const [comments, setComments] = useState<Comment[]>([]);
   const [post, setPost] = useState<Post>();
 
-  const addComment = (comment: string) => {
+  const addComment = (comment: Comment) => {
+    // setComments(comments.push(comment));
+  };
+
+  const deleteComment = (comment: Comment) => {
+    axios.delete(`/comments/${comment.comment_idx}`).then(() => {});
   };
 
   useEffect(() => {
-    console.log(123);
-
-    console.log(router.query);
     if (router.query.post_idx) {
       axios.get(`/posts/${router.query.post_idx}`).then(({ data }: { data: Post }) => {
         setPost(data);
       });
 
-      axios.get(`/comments/${router.query.post_idx}`).then(({ data }: { data: Comment[] }) => {
+      axios.post(`/comments`, {action: 'list', post_idx: router.query.post_idx}).then(({ data }: { data: Comment[] }) => {
         setComments(data);
       });
     }
   }, []);
 
   useEffect(() => {
-    console.log(post);
   }, [post]);
 
   useEffect(() => {
-    console.log(comments);
   }, [comments]);
 
   return (
@@ -64,7 +64,7 @@ const Detail = () => {
       <CommentForm post={post} addComment={addComment} />
       { !!comments &&
         comments.map((comment, index) => (
-          <CommentCard comment={comment} key={index} style={index ? {marginTop: 5} : {}} />
+          <CommentCard deleteComment={deleteComment} comment={comment} key={index} style={index ? {marginTop: 5} : {}} />
         ))
       }
       <div className="d-flex justify-content-end mt-1">

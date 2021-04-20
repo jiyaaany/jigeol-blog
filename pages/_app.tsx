@@ -1,5 +1,6 @@
 import '../styles/globals.css'
 import '../scss/main.scss'
+import '../plugins/moment'
 import 'codemirror/lib/codemirror.css';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { NextComponentType } from 'next';
