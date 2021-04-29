@@ -11,6 +11,11 @@ import { Container } from 'next/app';
 //   query: { post_idx: '' }
 // })
 
+// Router.push({
+//   pathname: '/post/detail',
+//   query: { post_idx: '' }
+// })
+
 // const posts: Post[] = [...Array(10).keys()].map((v) => ({
 //   id: v + 1,
 //   title: `title${v}`,
@@ -40,7 +45,7 @@ export const getStaticProps = async () => {
 
 const Home = ({ posts }: { posts: Post[] }) => {
   return (
-    <Container>
+    <>
       <div>
         <Button variant="danger" onClick={() => {
           location.href = "/post/form"
@@ -100,7 +105,7 @@ const Home = ({ posts }: { posts: Post[] }) => {
           </Card.Footer>
         </Card>
       </CardDeck>
-    </Container>
+    </>
   )
 }
 export default Home;
