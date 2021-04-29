@@ -4,6 +4,7 @@ export default function Profile() {
   const router = useRouter();
 
   return (
-    <p>{router.query.profile}</p>
+    <></>
+    // <p>{router.query.profile}</p>
   );
 }
