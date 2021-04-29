@@ -46,23 +46,13 @@
     "lint-staged": ">=10",
     "prettier": "2.2.1",
     "typescript": "^4.1.4"
-<<<<<<< HEAD
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> origin/develop
   },
   "main": "index.js",
   "repository": "https://github.com/jiyaaany/jigeol-blog.git",
   "author": "jiyaaany <jiyaaany@gmail.com>",
   "license": "MIT",
   "lint-staged": {
-<<<<<<< HEAD
     "*.js": "eslint --cache --fix",
     "*.{js,css,md}": "prettier --write"
-=======
-    "*.{js,css,md}": "prettier --write"
->>>>>>> Stashed changes
->>>>>>> origin/develop
   }
 }
