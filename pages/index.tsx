@@ -1,20 +1,26 @@
 import Link from 'next/link';
-import { Button } from 'react-bootstrap';
+import { Button, CardDeck, Card } from 'react-bootstrap';
 import { Post } from '../instance';
 import PostCard from '../components/PostCard';
 import axios from '../plugins/axios';
 import { useEffect, useState } from 'react';
+import { Container } from 'next/app';
 
 // Router.push({
 //   pathname: '/post/detail',
 //   query: { post_idx: '' }
 // })
 
-const posts: Post[] = [...Array(10).keys()].map((v) => ({
-  id: v + 1,
-  title: `title${v}`,
-  content: `content${v}content${v}content${v}content${v}content${v}`
-}));
+// Router.push({
+//   pathname: '/post/detail',
+//   query: { post_idx: '' }
+// })
+
+// const posts: Post[] = [...Array(10).keys()].map((v) => ({
+//   id: v + 1,
+//   title: `title${v}`,
+//   content: `content${v}content${v}content${v}content${v}content${v}`
+// }));
 
 type ProfileProps = {
   profile: string;
@@ -22,29 +28,22 @@ type ProfileProps = {
 
 const ProfileLink = (props: ProfileProps) => (
   <div>
-    <Link href={`/p/[profile]`} as={`/p/${props.profile}`} classes={'mt-10'}>
+    <Link href={`/p/[profile]`} as={`/p/${props.profile}`}>
       <a>Go to {props.profile}'s profile</a>
     </Link>
   </div>
 );
 
-const Home = () => {
-  // const [posts, setPosts] = useState<Post[]>([]);
+export const getStaticProps = async () => {
+  const posts = await axios.post('/posts');
 
-  useEffect(() => {
-    // console.log('component did mount');
+  return {
+    props: { posts }
+  }
 
-    // axios.post('/posts').then(({data}) => {
-    //   setPosts(data);
-    // });
+}
 
-    // return () => console.log('component will unmount');
-  }, []);
-
-  useEffect(() => {
-    // console.log('component did update');
-  }, [posts]);
-
+const Home = ({ posts }: { posts: Post[] }) => {
   return (
     <>
       <div>
@@ -53,17 +52,59 @@ const Home = () => {
         }}>글쓰기</Button>
       </div>
       <h1>Friends List</h1>
-      <ProfileLink profile="Jake"/>
-      <ProfileLink profile="Peter"/>
-      <ProfileLink profile="Yumi"/>
+      <ProfileLink profile="Jake" />
+      <ProfileLink profile="Peter" />
+      <ProfileLink profile="Yumi" />
 
-      <div className={'flex-center'}>
-      {
-        posts.map((post, index) => (
-          <PostCard post={post} key={index}/>
-        ))
-      }
-      </div>
+      <CardDeck>
+        {
+          posts.map((post, index) => (
+            <PostCard post={post} key={index} />
+          ))
+        }
+      </CardDeck>
+      <CardDeck>
+        <Card>
+          <Card.Img variant="top" src="holder.js/100px160" />
+          <Card.Body>
+            <Card.Title>Card title</Card.Title>
+            <Card.Text>
+              This is a wider card with supporting text below as a natural lead-in to
+              additional content. This content is a little bit longer.
+      </Card.Text>
+          </Card.Body>
+          <Card.Footer>
+            <small className="text-muted">Last updated 3 mins ago</small>
+          </Card.Footer>
+        </Card>
+        <Card>
+          <Card.Img variant="top" src="holder.js/100px160" />
+          <Card.Body>
+            <Card.Title>Card title</Card.Title>
+            <Card.Text>
+              This card has supporting text below as a natural lead-in to additional
+        content.{' '}
+            </Card.Text>
+          </Card.Body>
+          <Card.Footer>
+            <small className="text-muted">Last updated 3 mins ago</small>
+          </Card.Footer>
+        </Card>
+        <Card>
+          <Card.Img variant="top" src="holder.js/100px160" />
+          <Card.Body>
+            <Card.Title>Card title</Card.Title>
+            <Card.Text>
+              This is a wider card with supporting text below as a natural lead-in to
+              additional content. This card has even longer content than the first to
+              show that equal height action.
+      </Card.Text>
+          </Card.Body>
+          <Card.Footer>
+            <small className="text-muted">Last updated 3 mins ago</small>
+          </Card.Footer>
+        </Card>
+      </CardDeck>
     </>
   )
 }

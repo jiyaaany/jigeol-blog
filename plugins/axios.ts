@@ -1,11 +1,14 @@
-import _axios, { AxiosInstance } from 'axios';
+import _axios, { AxiosResponse } from 'axios';
 
-export const axios: AxiosInstance = _axios.create({
-  baseURL: '//localhost:5000',
-  proxy: {
-    host: '//localhost',
-    port: 5000
-  }
+const axios = _axios.create({
+  baseURL: 'http://localhost:5000',
+
 });
+
+axios.interceptors.response.use(
+  (value: AxiosResponse) => {
+    return value.data;
+  },
+);
 
 export default axios;
