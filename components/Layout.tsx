@@ -1,14 +1,15 @@
 import Header from './Header';
 import Footer from './Footer';
+import { Container } from 'react-bootstrap';
 
 const Layout = props => (
   <div>
     <Header />
-    <div style={{paddingTop: 56, minHeight: 'calc(100vh - 150px)'}}>
+    <Container style={{paddingTop: 56, minHeight: 'calc(100vh - 150px)'}}>
       {props.children}
-    </div>
+    </Container>
     <Footer />
   </div>
 );
 
-export default Layout;  
+export default Layout;
