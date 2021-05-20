@@ -1,10 +1,9 @@
 export interface Post {
-  post_idx: number,
+  id: number,
   title: string,
   content: string,
   reg_date: Date,
-  user: User,
-  comments: Comment[]
+
 }
 
 export interface User {

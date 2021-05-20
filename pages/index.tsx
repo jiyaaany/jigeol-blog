@@ -1,7 +1,8 @@
 import Link from 'next/link';
-import { Button, CardDeck, Card } from 'react-bootstrap';
-import { Post } from '../instance';
+import { Button, CardDeck, CardColumns, Card } from 'react-bootstrap';
+import {Comment, Post, User} from '../instance';
 import PostCard from '../components/PostCard';
+import moment from 'moment';
 import axios from '../plugins/axios';
 import { useEffect, useState } from 'react';
 import { Container } from 'next/app';
@@ -16,11 +17,12 @@ import { Container } from 'next/app';
 //   query: { post_idx: '' }
 // })
 
-// const posts: Post[] = [...Array(10).keys()].map((v) => ({
-//   id: v + 1,
-//   title: `title${v}`,
-//   content: `content${v}content${v}content${v}content${v}content${v}`
-// }));
+const posts: Post[] = [...Array(10).keys()].map((v) => ({
+  id: v + 1,
+  title: `title${v}`,
+  content: `content${v}content${v}content${v}content${v}content${v}`,
+  reg_date: new Date(moment().format()),
+}));
 
 type ProfileProps = {
   profile: string;
@@ -34,56 +36,37 @@ const ProfileLink = (props: ProfileProps) => (
   </div>
 );
 
-export const getStaticProps = async () => {
-  const posts = await axios.post('/posts');
+// export const getStaticProps = async () => {
+//   const posts = await axios.post('/posts');
+//
+//   return {
+//     props: { posts }
+//   }
+//
+// }
 
-  return {
-    props: { posts }
-  }
-
-}
-
-const Home = ({ posts }: { posts: Post[] }) => {
+const Home = () => {
   return (
     <>
-      <div>
-        <Button variant="danger" onClick={() => {
-          location.href = "/post/form"
-        }}>글쓰기</Button>
-      </div>
-      <h1>Friends List</h1>
-      <ProfileLink profile="Jake" />
-      <ProfileLink profile="Peter" />
-      <ProfileLink profile="Yumi" />
+      <ProfileLink profile="Jake"/>
+      <ProfileLink profile="Peter"/>
+      <ProfileLink profile="Yumi"/>
 
-      <CardDeck>
+      <CardColumns>
         {
           posts.map((post, index) => (
-            <PostCard post={post} key={index} />
+            <PostCard key={index} post={post}/>
           ))
         }
-      </CardDeck>
+      </CardColumns>
       <CardDeck>
         <Card>
-          <Card.Img variant="top" src="holder.js/100px160" />
+          <Card.Img variant="top" src="holder.js/100px160"/>
           <Card.Body>
             <Card.Title>Card title</Card.Title>
             <Card.Text>
               This is a wider card with supporting text below as a natural lead-in to
               additional content. This content is a little bit longer.
-      </Card.Text>
-          </Card.Body>
-          <Card.Footer>
-            <small className="text-muted">Last updated 3 mins ago</small>
-          </Card.Footer>
-        </Card>
-        <Card>
-          <Card.Img variant="top" src="holder.js/100px160" />
-          <Card.Body>
-            <Card.Title>Card title</Card.Title>
-            <Card.Text>
-              This card has supporting text below as a natural lead-in to additional
-        content.{' '}
             </Card.Text>
           </Card.Body>
           <Card.Footer>
@@ -91,14 +74,27 @@ const Home = ({ posts }: { posts: Post[] }) => {
           </Card.Footer>
         </Card>
         <Card>
-          <Card.Img variant="top" src="holder.js/100px160" />
+          <Card.Img variant="top" src="holder.js/100px160"/>
+          <Card.Body>
+            <Card.Title>Card title</Card.Title>
+            <Card.Text>
+              This card has supporting text below as a natural lead-in to additional
+              content.{' '}
+            </Card.Text>
+          </Card.Body>
+          <Card.Footer>
+            <small className="text-muted">Last updated 3 mins ago</small>
+          </Card.Footer>
+        </Card>
+        <Card>
+          <Card.Img variant="top" src="holder.js/100px160"/>
           <Card.Body>
             <Card.Title>Card title</Card.Title>
             <Card.Text>
               This is a wider card with supporting text below as a natural lead-in to
               additional content. This card has even longer content than the first to
               show that equal height action.
-      </Card.Text>
+            </Card.Text>
           </Card.Body>
           <Card.Footer>
             <small className="text-muted">Last updated 3 mins ago</small>
@@ -106,6 +102,6 @@ const Home = ({ posts }: { posts: Post[] }) => {
         </Card>
       </CardDeck>
     </>
-  )
+  );
 }
 export default Home;

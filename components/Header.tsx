@@ -6,14 +6,20 @@ const Header = () => (
   <div>
     <Head>
       <title>jigeol-blog</title>
-      <link rel="icon" href="/favicon.ico" />
+      <link rel="icon" href="/favicon.png" />
     </Head>
     <Navbar bg="dark" variant="dark" fixed="top" style={{height: 56}}>
       <Navbar.Brand href="/">지걸Blog</Navbar.Brand>
       <Nav className="mr-auto">
-        <Nav.Link href="#features">Features</Nav.Link>
+        <Nav.Link href="">About Me</Nav.Link>
+        <Nav.Link href="">Resume</Nav.Link>
         <Nav.Link href="/posts/form">글쓰기</Nav.Link>
       </Nav>
+      <div>
+        <Button variant="danger" onClick={() => {
+          location.href = "/post/form"
+        }}>글쓰기</Button>
+      </div>
       <Form inline>
         <FormControl type="text" placeholder="Search" className="mr-sm-2" />
         <Button variant="outline-info">Search</Button>

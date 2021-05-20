@@ -1,11 +1,13 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 import Nav from 'react-bootstrap/Nav';
 
 const Footer = () => (
   <footer className="footer">
     <a href="#/" className="lnk-main">
-      <img src="/img/pc/common-logo.png" alt="지걸블로그" />
+      <Image src={'/favicon.png'} width={25} height={25} alt={'지걸블로그'}/>
+      지걸블로그
     </a>
     <div className="footer-wrap">
       <address>
@@ -22,6 +24,7 @@ const Footer = () => (
           소비자중심경영
         </a>
       </div>
+      <div>아이콘 제작자 <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a></div>
     </div>
     <p className="copyright">© <strong>Jigeol Corp.</strong> All right Reserved</p>
   </footer>
