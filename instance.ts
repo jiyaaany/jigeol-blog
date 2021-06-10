@@ -1,14 +1,13 @@
 export interface Post {
-  post_idx: number,
+  id: number,
   title: string,
   content: string,
-  reg_date: Date,
   user: User,
   comments: Comment[]
 }
 
 export interface User {
-  user_idx: number,
+  id: number,
   user_id: string,
   email: string,
   name: string,
@@ -16,8 +15,8 @@ export interface User {
 }
 
 export interface Comment {
-  comment_idx: number,
-  content: string,
+  id: number,
+  comment: string,
   user: User,
-  reg_date: string,
+  reg_date: Date,
 }
