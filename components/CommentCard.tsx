@@ -1,10 +1,9 @@
-import { Card, Modal, Button } from 'react-bootstrap';
+import { Card, Modal, Button, Form } from 'react-bootstrap';
 import { Comment } from '../instance';
 import { CSSProperties, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faReply, faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faReply, faEdit, faTrashAlt, faTimes } from '@fortawesome/free-solid-svg-icons';
 import moment from 'moment';
-import axios from '../plugins/axios';
 import styled from 'styled-components';
 
 type CommentProps = {
@@ -18,7 +17,10 @@ const CommentRegDate = styled.p`
 `;
 
 const CommentCard = ({ comment, style, deleteComment }: CommentProps) => {
+  const [reply, setReply] = useState('');
   const [show, setShow] = useState(false);
+  const [replying, setReplying] = useState(false);
+  const [editing, setEditing] = useState(false);
 
   const replyComment = () => {
 
@@ -38,11 +40,20 @@ const CommentCard = ({ comment, style, deleteComment }: CommentProps) => {
       {comment.content} <br />
       <CommentRegDate>{moment(comment.reg_date, 'YYYYMMDD').fromNow()}</CommentRegDate>
 
-      <div style={{display: 'flex', alignItems: 'center', justifyContent: 'flex-end'}}>
-        <FontAwesomeIcon icon={faReply} onClick={replyComment} className={'mr-3'} />
-        <FontAwesomeIcon icon={faEdit} onClick={editComment} className={'mr-3'} />
-        <FontAwesomeIcon icon={faTrashAlt} onClick={() => setShow(true)} />
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+        <FontAwesomeIcon icon={replying ? faTimes : faReply} onClick={() => setReplying(!replying)} className={'mr-3 transform-scale-1'} />
+        <FontAwesomeIcon icon={faEdit} onClick={editComment} className={'mr-3 transform-scale-1'} />
+        <FontAwesomeIcon icon={faTrashAlt} onClick={() => setShow(true)} className={'transform-scale-1'} />
       </div>
+
+      {replying && (
+        <>
+          <Form.Control as="textarea" rows={3} className={'mt-3'} value={reply} placeholder="댓글을 입력하세요." onChange={(e) => setReply(e.target.value)} />
+          <div className={'flex-center-end'}>
+            <Button variant="grape" className={'mt-3'} onClick={replyComment}>댓글 입력</Button>
+          </div>
+        </>
+      )}
 
       <Modal
         aria-labelledby="contained-modal-title-vcenter"

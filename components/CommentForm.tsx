@@ -18,20 +18,20 @@ const CommentForm = ({ post, addComment }: CommentFormProps) => {
   const submitForm = (e) => {
     e.preventDefault();
 
-    axios.post('/comments', {content, user_idx: 1, post_idx: post.post_idx, action: 'add'})
+    axios.post('/comments', { content, user_idx: 1, post_idx: post.post_idx, action: 'add' })
       .then((response) => {
         if (response.status) {
           addComment(response.data);
           setContent('');
         }
-    });
+      });
   }
 
   return (
-    <div style={{display: 'flex'}}>
-      <Form.Control type="text" value={content} placeholder="댓글을 입력하세요." onChange={(e) => setContent(e.target.value)} />
+    <div style={{ display: 'flex' }}>
+      <Form.Control as="textarea" row={3} value={content} placeholder="댓글을 입력하세요." onChange={(e) => setContent(e.target.value)} />
 
-      <Button variant="primary" style={{width: 100}} onClick={submitForm}>
+      <Button variant="grape" style={{ width: 100 }} onClick={submitForm}>
         저장
       </Button>
     </div>

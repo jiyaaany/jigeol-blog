@@ -1,8 +1,7 @@
 import _axios, { AxiosResponse } from 'axios';
 
 const axios = _axios.create({
-  baseURL: 'http://localhost:5000',
-
+  baseURL: 'http://jsonplaceholder.typicode.com',
 });
 
 axios.interceptors.response.use(
