@@ -2,6 +2,7 @@ export interface Post {
   id: number,
   title: string,
   content: string,
+  reg_date: Date,
   user: User,
   comments: Comment[]
 }
