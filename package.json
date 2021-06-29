@@ -32,7 +32,8 @@
     "react-kakao-login": "^2.1.0",
     "react-naver-login": "^0.1.4",
     "sass": "^1.32.7",
-    "styled-components": "5.2.3"
+    "styled-components": "5.2.3",
+    "styled-jsx": "3.4.4"
   },
   "devDependencies": {
     "@types/node": "^14.14.25",
