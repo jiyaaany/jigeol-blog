@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { Button, CardDeck, CardColumns, Card } from 'react-bootstrap';
 import {Comment, Post, User} from '../instance';
 import PostCard from '../components/PostCard';
 import moment from 'moment';
@@ -7,14 +6,13 @@ import axios from '../plugins/axios';
 import { useEffect, useState } from 'react';
 import { Container } from 'next/app';
 import Home from './home';
-import { useState } from 'react';
 
-const posts: Post[] = [...Array(10).keys()].map((v) => ({
-  id: v + 1,
-  title: `title${v}`,
-  content: `content${v}content${v}content${v}content${v}content${v}`,
-  reg_date: new Date(moment().format()),
-}));
+// const posts: Post[] = [...Array(10).keys()].map((v) => ({
+//   id: v + 1,
+//   title: `title${v}`,
+//   content: `content${v}content${v}content${v}content${v}content${v}`,
+//   reg_date: new Date(moment().format()),
+// }));
 
 type ProfileProps = {
   profile: string;

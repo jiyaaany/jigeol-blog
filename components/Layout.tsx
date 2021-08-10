@@ -1,12 +1,12 @@
-import Header from './Header';
+import Navbar from './Navbar';
 import Footer from './Footer';
-import { Container } from 'react-bootstrap';
+import { Container } from '@material-ui/core';
 
-const Layout = props => (
+const Layout = ({ children }) => (
   <div>
-    <Header />
-    <Container style={{paddingTop: 56, minHeight: 'calc(100vh - 150px)'}}>
-      {props.children}
+    <Navbar />
+    <Container>
+      {children}
     </Container>
     <Footer />
   </div>

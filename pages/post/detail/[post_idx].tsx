@@ -1,4 +1,3 @@
-import { Button, Card } from 'react-bootstrap';
 import { Comment, Post } from '../../../instance';
 import CommentForm from '../../../components/CommentForm';
 import CommentCard from '../../../components/CommentCard';

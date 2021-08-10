@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import Head from 'next/head';
-import { Navbar, Nav, Form, FormControl, Button, NavDropdown } from 'react-bootstrap';
 
 const Header = () => (
   <div>

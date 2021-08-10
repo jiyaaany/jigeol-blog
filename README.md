@@ -1,4 +1,4 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+### 지걸블로그
 
 ## Getting Started
 
@@ -34,4 +34,5 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
 ## 참고 URL
-* Next.js + tui.editor: https://myeongjae.kim/blog/2020/04/05/tui-editor-with-nextjs
+
+- Next.js + tui.editor: https://myeongjae.kim/blog/2020/04/05/tui-editor-with-nextjs

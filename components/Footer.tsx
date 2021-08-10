@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from '../styles/Home.module.css';
-import Nav from 'react-bootstrap/Nav';
 
 const Footer = () => (
   <footer className="footer">
